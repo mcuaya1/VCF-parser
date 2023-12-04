@@ -103,26 +103,27 @@ with open(input_file, "r") as vcf_file:
 #				mutation_list[sample_name][mutation] += 1
 
 
-
+output_file="VCF_PARSER_OUTPUT.tsv"
 time_generated=datetime.now().strftime("%d/%m/%y %H:%M:%S")
-print(f"#{time_generated}")
-if added_info == True:
-	print("#CTRL\tALT\tSEEN\tFREQUENCY\tSAMPLES\tLOCATION")
-	for mutation,info in mutation_list.items():
-		print(f"{mutation[0]}\t{mutation[1]}",end="\t")
-		for key,value in info.items():
-			if(key=='FQ'):
-				print((f"{key}={((value/mutation_cnt)*100):.2f}"),end="\t")
-			else:
-				print((f"{key}={value}"),end="\t")
-		print()
-else:
-	print("#CTRL\tALT\tSEEN\tFREQUENCY")
-	for mutation,info in mutation_list.items():
-		print(f"{mutation[0]}\t{mutation[1]}",end="\t")
-		for key,value in info.items():
-			if(key=='FQ'):
-				print((f"{key}={((value/mutation_cnt)*100):.2f}"),end="\t")
-			elif(key != 'SAMPLE' and key !='LOCATION'):
-				print((f"{key}={value}"),end="\t")
-		print()
+with open(output_file, "w") as f:
+	f.write(f"#{time_generated}")
+	if added_info == True:
+		f.write("#CTRL\tALT\tSEEN\tFREQUENCY\tSAMPLES\tLOCATION")
+		for mutation,info in mutation_list.items():
+			print(f"{mutation[0]}\t{mutation[1]}",end="\t",file=f)
+			for key,value in info.items():
+				if(key=='FQ'):
+					print(f"{key}={((value/mutation_cnt)*100):.2f}",end="\t",file=f)
+				else:
+					print(f"{key}={value}",end="\t",file=f)
+			print()
+	else:
+		f.write("#CTRL\tALT\tSEEN\tFREQUENCY")
+		for mutation,info in mutation_list.items():
+			print(f"{mutation[0]}\t{mutation[1]}",end="\t",file=f)
+			for key,value in info.items():
+				if(key=='FQ'):
+					print(f"{key}={((value/mutation_cnt)*100):.2f}",end="\t",file=f)
+				elif(key != 'SAMPLE' and key !='LOCATION'):
+					print(f"{key}={value}",end="\t",file=f)
+			f.write("\n")
