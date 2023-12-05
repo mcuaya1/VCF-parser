@@ -5,15 +5,9 @@
 
 while getopts "c:ho:b:d:i:" flag; do
 	case $flag in
-#		s)
-#		INPUT="$OPTARG"
-#		;;
 		c)
 		CONTROL="$OPTARG"
 		;;
-#		e)
-#		ALL_FILES="$OPTARG"
-#		;;
 		b)
 		GIVEN_DIR="$OPTARG"
 		;;
@@ -51,28 +45,19 @@ while getopts "c:ho:b:d:i:" flag; do
 done
 
 
-#if [ $ALL_FILES == 0 ]
-#then
-#	echo "Given files will be used..."
-#	BAM_DIR=$INPUT
-#else
-#	echo "All files in given directory will be used..."
-#	BAM_DIR=${GIVEN_DIR}/*
-#fi
-
 USING_CTRL=0
 BAM_DIR=
 if [ ! -z ${CONTROL} ]
 then
 	echo "Control sample given..."
 	echo "Include control sample in VCF creation..."
-	ALL_BAM_FILES=$(ls ${GIVEN_DIR}/ | grep -v ".bai" |grep "${SPECIFIC_FILES}" | awk -v dir=${GIVEN_DIR} '{ print dir"/" $0}')
+	ALL_BAM_FILES=$(ls ${GIVEN_DIR}/ | grep -v ".bai" |grep "${SPECIFIC_FILES}.bam" | awk -v dir=${GIVEN_DIR} '{ print dir"/" $0}')
 	BAM_DIR=${ALL_BAM_FILES}
 	USING_CTRL=1
 else
 	echo "No control sample given..."
 	echo "Preform standard VCF creation..."
-	BAM_DIR=$(ls ${GIVEN_DIR}/ | grep "${SPECIFIC_FILES}" | grep -v ".bai" | awk -v dir=${GIVEN_DIR} '{ print dir"/" $0}')
+	BAM_DIR=$(ls ${GIVEN_DIR}/ | grep "${SPECIFIC_FILES}.bam" | grep -v ".bai" | awk -v dir=${GIVEN_DIR} '{ print dir"/" $0}')
 fi
 
 if [ -z ${OUTPUT_DIR} ]
@@ -119,10 +104,12 @@ bcftools stats -F $GENOME -s - $VCF_DIR/$VCF > $VCF_DIR/$VCF.stats
 mkdir -p $VCF_DIR/plots
 plot-vcfstats -p $VCF_DIR/plots/$VCF.stats
 bcftools filter -O z -o $VCF_DIR/$VCFFILTER -s LOWQUAL -i'%QUAL>10' $VCF_DIR/$VCF
+echo "Creating custom stats file..."
+bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%SAMPLE=%TGT]\n' ${VCF_DIR}/$VCF > $VCF_DIR/VCF_OUTPUT_INFO.tsv
+
+echo "Compressing files..."
 gzip $VCF_DIR/$VCF
 gzip $VCF_DIR/$VCF.stats
 gzip $VCF_DIR/$VCFFILTER
 
-echo "Creating custom stats file..."
-bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%SAMPLE=%TGT]\n' VCF_OUTPUT/UV_sample.vcf.gz > $VCF_DIR/VCF_OUTPUT_INFO.tsv
 echo "Finished..."
