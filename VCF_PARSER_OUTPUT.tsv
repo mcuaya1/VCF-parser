@@ -1,6 +1,9 @@
-#04/12/23 16:13:32
+#File name:VCF_PARSER_OUTPUT.tsv
+#Column Descriptions:
+#NS='Number of samples mutation was seen in'
+#FQ='Frequenecy of mutation seen'
+#Date file was generated:04/12/23 17:45:33
 #CTRL	ALT	SEEN	FREQUENCY
-
 G	A	NS=5	FQ=14.21	
 G	T	NS=5	FQ=0.68	
 T	C	NS=5	FQ=11.20	

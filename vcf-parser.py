@@ -106,7 +106,11 @@ with open(input_file, "r") as vcf_file:
 output_file="VCF_PARSER_OUTPUT.tsv"
 time_generated=datetime.now().strftime("%d/%m/%y %H:%M:%S")
 with open(output_file, "w") as f:
-	print(f"#{time_generated}",end="\n",file=f)
+	print(f"#File name:{output_file}", file=f)
+	print("#Column Descriptions:", file=f)
+	print("#NS='Number of samples mutation was seen in'",file=f)
+	print("#FQ='Frequenecy of mutation seen'",file=f)
+	print(f"#Date file was generated:{time_generated}",file=f)
 	if added_info == True:
 		print("#CTRL\tALT\tSEEN\tFREQUENCY\tSAMPLES\tLOCATION",file=f)
 		for mutation,info in mutation_list.items():
@@ -116,9 +120,9 @@ with open(output_file, "w") as f:
 					print(f"{key}={((value/mutation_cnt)*100):.2f}",end="\t",file=f)
 				else:
 					print(f"{key}={value}",end="\t",file=f)
-			print()
+			f.write("\n")
 	else:
-		print("#CTRL\tALT\tSEEN\tFREQUENCY\n",file=f)
+		print("#CTRL\tALT\tSEEN\tFREQUENCY",file=f)
 		for mutation,info in mutation_list.items():
 			print(f"{mutation[0]}\t{mutation[1]}",end="\t",file=f)
 			for key,value in info.items():
