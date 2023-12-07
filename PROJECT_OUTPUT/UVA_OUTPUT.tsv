@@ -1,0 +1,18 @@
+#File name:UVA_OUTPUT.tsv
+#Column Descriptions:
+#NS='Number of samples mutation was seen in'
+#FQ='Frequenecy of mutation seen'
+#Date file was generated:06/12/23 16:07:44
+#CTRL	ALT	SEEN	FREQUENCY
+C	T	NS=47	FQ=24.42	
+G	A	NS=47	FQ=23.95	
+A	G	NS=47	FQ=19.67	
+T	C	NS=47	FQ=19.05	
+A	T	NS=47	FQ=8.40	
+T	A	NS=47	FQ=6.38	
+G	T	NS=37	FQ=2.88	
+A	C	NS=47	FQ=5.99	
+G	C	NS=6	FQ=0.47	
+T	G	NS=43	FQ=3.34	
+C	G	NS=12	FQ=0.93	
+C	A	NS=41	FQ=3.19	

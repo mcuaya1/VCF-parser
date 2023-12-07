@@ -1,7 +1,7 @@
 import os
-import gzip
 import csv
 import argparse
+import pandas as pd
 from datetime import datetime
 """
 TODO:
@@ -24,17 +24,35 @@ parser = argparse.ArgumentParser(add_help=False, prog="vcf-parser.py", descripti
 parser.add_argument('-i',"--input", required=True, help="Input generated tsv stats file",type=str)
 parser.add_argument('-a', "--added-info", action="store_true", help="add extra info such as sample name, chromosomes, and more")
 parser.add_argument('-h', '--help', action='help', default=argparse.SUPPRESS, help='Display commands possible with this program')
+parser.add_argument('-o', "--output-file", required=True, help="Outputfile name", type=str)
 args = parser.parse_args()
 
 
 #Store arguments in variables
 input_file = args.input
 added_info = args.added_info
+output_file = args.output_file
 
 
 sample_column=[]
 print("Read file in...")
 mutation_list = {}
+
+def type_of_mutation(ref_base: str, alt_base: str) -> str:
+	type= ""
+	if(ref_base == "A" or ref_base == "G"):
+		if(alt_base == "G" or alt_base == "A"):
+			type = "Transition"
+		else:
+			type = "Transversion"
+	elif(ref_base == "T" or ref_base =="C"):
+		if(alt_base == "C" or ref_base =="T"):
+			type = "Transition"
+		else:
+			type = "Transversion"
+	return type
+
+
 
 with open(input_file, "r") as vcf_file:
 	vcf_parser=csv.reader(vcf_file,delimiter='\t')
@@ -44,12 +62,10 @@ with open(input_file, "r") as vcf_file:
 	for row in vcf_parser:
 		for i in range(5, len(row)):
 			sample_column.append(i)
-			print(i)
 		print(f"There are {len(sample_column)} samples")
 
 		break
 	vcf_file.seek(0)
-	#next(vcf_parser)
 
 	for column in vcf_parser:
 		mutation_cnt+=1
@@ -68,6 +84,7 @@ with open(input_file, "r") as vcf_file:
 			mutation = (control, cur_sample)
 			if mutation not in mutation_list and (control != cur_sample) and (control != "." and cur_sample != ".") and (len(control)==1 and len(cur_sample)==1):
 				mutation_list[mutation]={}
+				mutation_list[mutation]["TYP"] = type_of_mutation(control, cur_sample)
 				mutation_list[mutation]["NS"]=1
 				mutation_list[mutation]["FQ"]=1
 				mutation_list[mutation]["SAMPLE"]={}
@@ -87,32 +104,27 @@ with open(input_file, "r") as vcf_file:
 					mutation_list[mutation]["SAMPLE"][sample_name]=1
 				mutation_list[mutation]["FQ"]+=1
 
-
-output_file="VCF_PARSER_OUTPUT.tsv"
 time_generated=datetime.now().strftime("%d/%m/%y %H:%M:%S")
+
+df = pd.DataFrame.from_dict(mutation_list, orient="index")
+df["FQ"] = round((df["FQ"]/mutation_cnt)*100, 2)
+df = df.sort_values(by=["FQ"], ascending=False)
+
 with open(output_file, "w") as f:
 	print(f"#File name:{output_file}", file=f)
+	print(f"#Number of mutations present: {mutation_cnt}",file=f)
 	print("#Column Descriptions:", file=f)
-	print("#NS='Number of samples mutation was seen in'",file=f)
-	print("#FQ='Frequenecy of mutation seen'",file=f)
-	print(f"#Date file was generated:{time_generated}",file=f)
+	print("#TYP='Type of mutation'",file=f)
+	print("#FQ='Frequenecy of mutation'",file=f)
 	if added_info == True:
-		print("#CTRL\tALT\tSEEN\tFREQUENCY\tSAMPLES\tLOCATION",file=f)
-		for mutation,info in mutation_list.items():
-			print(f"{mutation[0]}\t{mutation[1]}",end="\t",file=f)
-			for key,value in info.items():
-				if(key=='FQ'):
-					print(f"{key}={((value/mutation_cnt)*100):.2f}",end="\t",file=f)
-				else:
-					print(f"{key}={value}",end="\t",file=f)
-			f.write("\n")
-	else:
-		print("#CTRL\tALT\tSEEN\tFREQUENCY",file=f)
-		for mutation,info in mutation_list.items():
-			print(f"{mutation[0]}\t{mutation[1]}",end="\t",file=f)
-			for key,value in info.items():
-				if(key=='FQ'):
-					print(f"{key}={((value/mutation_cnt))*100:.2f}",end="\t",file=f)
-				elif(key != 'SAMPLE' and key !='LOCATION'):
-					print(f"{key}={value}",end="\t",file=f)
-			f.write("\n")
+		print("#NS=Number of samples mutation was seen in", file=f)
+		print("#SAMPLE=List of sample names mutation was seen in",file=f)
+		print("LOCATION=List of chromosomes mutation was seen in",file=f)
+	print(f"Date file was generated:{time_generated}",file=f)
+
+if added_info == True:
+	df.to_csv(output_file, sep='\t', mode='a')
+
+else:
+	df = df.drop(columns=["NS","SAMPLE","LOCATION"])
+	df.to_csv(output_file, sep='\t', mode='a')

@@ -1,0 +1,19 @@
+#File name:UVB_OUTPUT.tsv
+#Number of mutations present: 1271
+#Column Descriptions:
+#TYP='Type of mutation'
+#FQ='Frequenecy of mutation'
+Date file was generated:07/12/23 00:06:55
+		TYP	FQ
+G	A	Transition	19.2
+C	T	Transversion	16.92
+T	C	Transition	16.29
+A	G	Transition	15.5
+A	T	Transversion	6.37
+T	A	Transition	5.59
+A	C	Transversion	2.75
+C	A	Transversion	2.68
+G	T	Transversion	2.28
+T	G	Transition	1.89
+G	C	Transversion	0.71
+C	G	Transversion	0.47
