@@ -1,0 +1,19 @@
+#File name:PROJECT_OUTPUT/EMS_OUTPUT.tsv
+#Number of mutations present: 15808
+#Column Descriptions:
+#TYP='Type of mutation'
+#FQ='Frequenecy of mutation'
+Date file was generated:07/12/23 18:25:52
+		TYP	FQ
+G	A	Transition	40.68
+C	T	Transition	36.9
+T	C	Transition	36.63
+A	G	Transition	35.49
+G	T	Transversion	17.37
+T	A	Transversion	14.07
+A	T	Transversion	12.87
+C	A	Transversion	10.8
+T	G	Transversion	10.72
+A	C	Transversion	8.21
+G	C	Transversion	6.4
+C	G	Transversion	5.59

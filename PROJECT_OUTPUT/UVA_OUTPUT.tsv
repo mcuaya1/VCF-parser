@@ -1,18 +1,19 @@
-#File name:UVA_OUTPUT.tsv
+#File name:PROJECT_OUTPUT/UVA_OUTPUT.tsv
+#Number of mutations present: 399
 #Column Descriptions:
-#NS='Number of samples mutation was seen in'
-#FQ='Frequenecy of mutation seen'
-#Date file was generated:06/12/23 16:07:44
-#CTRL	ALT	SEEN	FREQUENCY
-C	T	NS=47	FQ=24.42	
-G	A	NS=47	FQ=23.95	
-A	G	NS=47	FQ=19.67	
-T	C	NS=47	FQ=19.05	
-A	T	NS=47	FQ=8.40	
-T	A	NS=47	FQ=6.38	
-G	T	NS=37	FQ=2.88	
-A	C	NS=47	FQ=5.99	
-G	C	NS=6	FQ=0.47	
-T	G	NS=43	FQ=3.34	
-C	G	NS=12	FQ=0.93	
-C	A	NS=41	FQ=3.19	
+#TYP='Type of mutation'
+#FQ='Frequenecy of mutation'
+Date file was generated:07/12/23 13:29:30
+		TYP	FQ
+G	A	Transition	16.04
+A	G	Transition	15.29
+C	T	Transition	11.78
+T	C	Transition	7.02
+A	T	Transversion	6.77
+T	G	Transversion	4.51
+T	A	Transversion	3.01
+C	A	Transversion	2.01
+G	T	Transversion	1.75
+A	C	Transversion	1.75
+G	C	Transversion	0.25
+C	G	Transversion	0.25

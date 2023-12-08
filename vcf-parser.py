@@ -24,6 +24,7 @@ parser = argparse.ArgumentParser(add_help=False, prog="vcf-parser.py", descripti
 parser.add_argument('-i',"--input", required=True, help="Input generated tsv stats file",type=str)
 parser.add_argument('-a', "--added-info", action="store_true", help="add extra info such as sample name, chromosomes, and more")
 parser.add_argument('-h', '--help', action='help', default=argparse.SUPPRESS, help='Display commands possible with this program')
+parser.add_argument('-c', "--input", action="store_true", help="tsv stats file doesn't contain control sample")
 parser.add_argument('-o', "--output-file", required=True, help="Outputfile name", type=str)
 args = parser.parse_args()
 
@@ -46,7 +47,7 @@ def type_of_mutation(ref_base: str, alt_base: str) -> str:
 		else:
 			type = "Transversion"
 	elif(ref_base == "T" or ref_base =="C"):
-		if(alt_base == "C" or ref_base =="T"):
+		if(alt_base == "C" or alt_base =="T"):
 			type = "Transition"
 		else:
 			type = "Transversion"
