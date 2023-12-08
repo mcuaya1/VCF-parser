@@ -26,7 +26,7 @@ while getopts "c:ho:b:d:i:" flag; do
 		echo "		Script that produces vcf file from bam file(s)"
 		echo "OPTIONS"
 		echo "	-c"
-		echo "		Include control sample when creating vcf file."
+		echo "		Include control sample and control directory when creating vcf file."
 		echo "	-o"
 		echo "		Output file name."
 		echo "	-b"
@@ -108,6 +108,8 @@ echo "Creating custom stats file..."
 bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%SAMPLE=%TGT]\n' ${VCF_DIR}/$VCF > $VCF_DIR/VCF_OUTPUT_INFO.tsv
 
 echo "Compressing files..."
+#Check for zipped file already
+
 gzip $VCF_DIR/$VCF
 gzip $VCF_DIR/$VCF.stats
 gzip $VCF_DIR/$VCFFILTER
