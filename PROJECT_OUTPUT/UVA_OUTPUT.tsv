@@ -1,19 +1,19 @@
 #File name:PROJECT_OUTPUT/UVA_OUTPUT.tsv
-#Number of mutations present: 399
+#Number of mutations present: 835
 #Column Descriptions:
 #TYP='Type of mutation'
 #FQ='Frequenecy of mutation'
-Date file was generated:07/12/23 23:56:41
+Date file was generated:08/12/23 02:31:53
 		TYP	FQ
-G	A	Transition	16.04
-A	G	Transition	15.29
-C	T	Transition	11.78
-T	C	Transition	7.02
-A	T	Transversion	6.77
-T	G	Transversion	4.51
-T	A	Transversion	3.01
-C	A	Transversion	2.01
-G	T	Transversion	1.75
-A	C	Transversion	1.75
-G	C	Transversion	0.25
-C	G	Transversion	0.25
+G	A	Transition	7.66
+A	G	Transition	7.31
+C	T	Transition	5.63
+T	C	Transition	3.35
+A	T	Transversion	3.23
+T	G	Transversion	2.16
+T	A	Transversion	1.44
+C	A	Transversion	0.96
+G	T	Transversion	0.84
+A	C	Transversion	0.84
+G	C	Transversion	0.12
+C	G	Transversion	0.12

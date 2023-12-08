@@ -1,18 +1,18 @@
 #File name:PROJECT_OUTPUT/OGG_OUTPUT.tsv
-#Number of mutations present: 428
+#Number of mutations present: 739
 #Column Descriptions:
 #TYP='Type of mutation'
 #FQ='Frequenecy of mutation'
-Date file was generated:07/12/23 23:58:22
+Date file was generated:08/12/23 02:31:01
 		TYP	FQ
-G	A	Transition	14.49
-C	T	Transition	11.21
-C	A	Transversion	9.81
-A	G	Transition	8.88
-A	T	Transversion	3.27
-T	C	Transition	3.04
-T	G	Transversion	2.8
-G	T	Transversion	2.34
-T	A	Transversion	1.87
-A	C	Transversion	1.4
-C	G	Transversion	0.23
+G	A	Transition	8.39
+C	T	Transition	6.5
+C	A	Transversion	5.68
+A	G	Transition	5.14
+A	T	Transversion	1.89
+T	C	Transition	1.76
+T	G	Transversion	1.62
+G	T	Transversion	1.35
+T	A	Transversion	1.08
+A	C	Transversion	0.81
+C	G	Transversion	0.14

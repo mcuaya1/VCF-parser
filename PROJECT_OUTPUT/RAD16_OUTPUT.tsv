@@ -1,19 +1,19 @@
 #File name:PROJECT_OUTPUT/RAD16_OUTPUT.tsv
-#Number of mutations present: 3507
+#Number of mutations present: 4236
 #Column Descriptions:
 #TYP='Type of mutation'
 #FQ='Frequenecy of mutation'
-Date file was generated:07/12/23 23:57:40
+Date file was generated:08/12/23 02:31:16
 		TYP	FQ
-G	A	Transition	26.09
-C	T	Transition	23.84
-A	G	Transition	15.97
-T	C	Transition	14.51
-T	A	Transversion	5.3
-A	T	Transversion	5.16
-C	A	Transversion	3.02
-G	T	Transversion	2.17
-A	C	Transversion	2.0
-T	G	Transversion	1.37
-C	G	Transversion	0.8
-G	C	Transversion	0.8
+G	A	Transition	21.6
+C	T	Transition	19.74
+A	G	Transition	13.22
+T	C	Transition	12.02
+T	A	Transversion	4.39
+A	T	Transversion	4.27
+C	A	Transversion	2.5
+G	T	Transversion	1.79
+A	C	Transversion	1.65
+T	G	Transversion	1.13
+C	G	Transversion	0.66
+G	C	Transversion	0.66
