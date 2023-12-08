@@ -2,6 +2,7 @@ import os
 import csv
 import argparse
 import pandas as pd
+import matplotlib.pyplot as plt
 from datetime import datetime
 """
 TODO:
@@ -155,6 +156,7 @@ else:
     else:
         df = df.drop(columns=["LOCATION"])
     
-
+fig = df.plot(kind='barh', color='r', title=(f"{output_file}").split('/')[1].split('.')[0]).get_figure()
+fig.savefig(f"{output_file}.png")
 df.to_csv(output_file, sep='\t', mode='a')
     
