@@ -1,2 +1,4 @@
 # VCF-parser
-GEN220 project
+## GEN220 project
+Instructions coming soon...
+
