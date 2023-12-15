@@ -1,9 +1,9 @@
-#File name:PROJECT_OUTPUT/1002_YEAST_OUTPUT.tsv
+#File name:PROJECT_OUTPUT/1011_YEAST_OUTPUT
 #Number of mutations present: 1754866
 #Column Descriptions:
 #TYP='Type of mutation'
 #FQ='Frequenecy of mutation'
-Date file was generated:08/12/23 02:27:08
+#Date file was generated:14/12/23 17:53:49
 		TYP	FQ
 C	T	Transition	16.45
 G	A	Transition	16.42
