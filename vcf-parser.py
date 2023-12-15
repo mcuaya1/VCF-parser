@@ -138,7 +138,7 @@ with open(output_file, "w") as f:
 	print("#FQ='Frequenecy of mutation'",file=f)
 	if added_info == True:
 		print("#LOCATION=List of chromosomes mutation was seen in",file=f)
-	print(f"#Date file was generated:{time_generated}",file=f)
+	print(f"Date file was generated:{time_generated}",file=f)
 
 fig = df.plot(kind='barh', color='r', title=(f"{output_file}").split('/')[1].split('.')[0]).get_figure()
 fig.savefig(f"{output_file.split('.')[0]}.png")
