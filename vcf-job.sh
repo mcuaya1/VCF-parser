@@ -108,7 +108,6 @@ echo "Creating custom stats file..."
 bcftools query -f '%CHROM\t%POS\t%REF\t%ALT[\t%SAMPLE=%TGT]\n' ${VCF_DIR}/$VCF > $VCF_DIR/VCF_OUTPUT_INFO.tsv
 
 echo "Compressing files..."
-#Check for zipped file already
 
 gzip $VCF_DIR/$VCF
 gzip $VCF_DIR/$VCF.stats

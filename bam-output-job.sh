@@ -12,9 +12,9 @@ while getopts "hd:f:" flag; do
 		OUTPUT_DIR="$OPTARG"
 		;;
 		h)
-		echo "BAM-TO-VCF"
+		echo "BAM-OUTPUT"
 		echo "DESCRIPTION"
-		echo "		Script that produces vcf file from bam file(s)"
+		echo "		Script that produces bam files from sequence reads"
 		echo "OPTIONS"
 		echo "	-f"
 		echo "		Directory where fastq files are stored."

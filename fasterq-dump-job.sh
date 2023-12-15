@@ -52,18 +52,14 @@ LIST_OF_SAMPLE_NAMES=SAMPLE_NAMES.txt
 LIST_OF_SRAS=SRA_ACC.txt
 FASTQ_DIR=$OUTPUT_DIR
 
-#echo "Creating necessary directories..."
-#if [ ! -d $FASTQ_DIR ]; then
+echo "Creating necessary directories..."
+if [ ! -d $FASTQ_DIR ]; then
 	mkdir ${FASTQ_DIR}
-#fi
+fi
 
-#if [ ! -d $PREFETCH_DIR ]; then
+if [ ! -d $PREFETCH_DIR ]; then
 	mkdir ${PREFETCH_DIR}
-#fi
-
-#for sra in $(cat  $LIST_OF_SRAS); do
-#	prefetch $sra -O $PREFETCH_DIR
-#done
+fi
 
 echo "Downloaded prefetch..."
 echo "Unpacking FASTQ data..."
