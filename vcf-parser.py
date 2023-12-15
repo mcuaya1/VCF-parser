@@ -95,9 +95,9 @@ with open(working_file, "r") as vcf_file:
                         mutation_list[mutation]["FQ"]+=1
     else:
         for row in vcf_parser:
-            ref_alle=row[2].split('=')[1].strip()
+            ref_alle=row[3]
             chromosome_location=row[0]
-            alt_alle=row[sample_row[3]]
+            alt_alle=row[4]
         
             mutation = (ref_alle, alt_alle) 
             if (ref_alle != alt_alle) and (ref_alle != "." and alt_alle != "."):
@@ -107,11 +107,13 @@ with open(working_file, "r") as vcf_file:
                     mutation_list[mutation]={}
                     mutation_list[mutation]["TYP"] = type_of_mutation(ref_alle, alt_alle)
                     mutation_list[mutation]["FQ"]=1
-                    mutation_list[mutation]["LOCATION"]=[]
-                    mutation_list[mutation]["LOCATION"].append(chromosome_location)
+                    mutation_list[mutation]["LOCATION"]={}
+                    mutation_list[mutation]["LOCATION"][chromosome_location]=1
                 elif mutation in mutation_list:
                     if chromosome_location not in mutation_list[mutation]["LOCATION"]:
-                        mutation_list[mutation]["LOCATION"].append(chromosome_location)
+                        mutation_list[mutation]["LOCATION"][chromosome_location]=1
+                    else:
+                        mutation_list[mutation]["LOCATION"][chromosome_location]+=1
                     mutation_list[mutation]["FQ"]+=1
 
 
