@@ -122,7 +122,7 @@ for mutation,info in mutation_list.items():
     
 df = pd.DataFrame.from_dict(mutation_list, orient="index")
 if added_info == False:
-    df = df.drop(rows=["LOCATION"])
+    df = df.drop(columns=["LOCATION"])
 df["FQ"] = round((df["FQ"]/mutation_cnt)*100, 2)
 
 df = df.sort_values(by=["FQ"], ascending=False)
